@@ -1,4 +1,4 @@
-from mdta import MDTA
+# from mdta import MDTA
 import torch
 import torch.nn as nn
 import torch.nn.functional
@@ -6,13 +6,13 @@ import torch.nn.functional as F
 from functools import partial
 from base_networks import *
 
-import timm
+# import timm
 from timm.models.layers import DropPath, to_2tuple, trunc_normal_
-import types
+# import types
 import math
-from abc import ABCMeta, abstractmethod
-from mmcv.cnn import ConvModule
-import pdb
+# from abc import ABCMeta, abstractmethod
+# from mmcv.cnn import ConvModule
+# import pdb
 
 class EncoderTransformer(nn.Module):
     def __init__(self, img_size=224, patch_size=16, in_chans=3, num_classes=1000, embed_dims=[64, 128, 256, 512],

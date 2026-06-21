@@ -42,14 +42,14 @@ class TrainData(data.Dataset):
         width, height = input_img.size
 
         if width < crop_width and height < crop_height :
-            input_img = input_img.resize((crop_width,crop_height), Image.ANTIALIAS)
-            gt_img = gt_img.resize((crop_width, crop_height), Image.ANTIALIAS)
+            input_img = input_img.resize((crop_width,crop_height), Image.Resampling.LANCZOS)
+            gt_img = gt_img.resize((crop_width, crop_height), Image.Resampling.LANCZOS)
         elif width < crop_width :
-            input_img = input_img.resize((crop_width,height), Image.ANTIALIAS)
-            gt_img = gt_img.resize((crop_width,height), Image.ANTIALIAS)
+            input_img = input_img.resize((crop_width,height), Image.Resampling.LANCZOS)
+            gt_img = gt_img.resize((crop_width,height), Image.Resampling.LANCZOS)
         elif height < crop_height :
-            input_img = input_img.resize((width,crop_height), Image.ANTIALIAS)
-            gt_img = gt_img.resize((width, crop_height), Image.ANTIALIAS)
+            input_img = input_img.resize((width,crop_height), Image.Resampling.LANCZOS)
+            gt_img = gt_img.resize((width, crop_height), Image.Resampling.LANCZOS)
 
         width, height = input_img.size
 
@@ -108,14 +108,14 @@ class TrainData_new(data.Dataset):
         tmp_ch = 0
 
         if width < crop_width and height < crop_height :
-            input_img = input_img.resize((crop_width,crop_height), Image.ANTIALIAS)
-            gt_img = gt_img.resize((crop_width, crop_height), Image.ANTIALIAS)
+            input_img = input_img.resize((crop_width,crop_height), Image.Resampling.LANCZOS)
+            gt_img = gt_img.resize((crop_width, crop_height), Image.Resampling.LANCZOS)
         elif width < crop_width :
-            input_img = input_img.resize((crop_width,height), Image.ANTIALIAS)
-            gt_img = gt_img.resize((crop_width,height), Image.ANTIALIAS)
+            input_img = input_img.resize((crop_width,height), Image.Resampling.LANCZOS)
+            gt_img = gt_img.resize((crop_width,height), Image.Resampling.LANCZOS)
         elif height < crop_height :
-            input_img = input_img.resize((width,crop_height), Image.ANTIALIAS)
-            gt_img = gt_img.resize((width, crop_height), Image.ANTIALIAS)
+            input_img = input_img.resize((width,crop_height), Image.Resampling.LANCZOS)
+            gt_img = gt_img.resize((width, crop_height), Image.Resampling.LANCZOS)
 
         width, height = input_img.size
         # --- x,y coordinate of left-top corner --- #

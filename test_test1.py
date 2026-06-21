@@ -34,8 +34,12 @@ val_data_dir = './data/test/'
 
 # --- Gpu device --- #
 device_ids = [Id for Id in range(torch.cuda.device_count())]
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(device)
+device = torch.device(
+    "cuda" if torch.cuda.is_available()
+    else "mps" if torch.backends.mps.is_available()
+    else "cpu"
+)
+print("Using device:", device)
 
 # --- Validation data loader --- #
 
@@ -45,7 +49,7 @@ val_data_loader = DataLoader(ValData(val_data_dir,val_filename), batch_size=val_
 
 # --- Define the network --- #
 
-net = Transweather().cuda()
+net = Transweather().to(device)
 
 
 net = nn.DataParallel(net, device_ids=device_ids)

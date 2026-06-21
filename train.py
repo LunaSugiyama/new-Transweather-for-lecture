@@ -19,6 +19,8 @@ from transweather_model import Transweather
 
 plt.switch_backend('agg')
 
+NUM_WORKERS = 0
+
 # --- Parse hyper-parameters  --- #
 parser = argparse.ArgumentParser(description='Hyper-parameters for network')
 parser.add_argument('-learning_rate', help='Set the learning rate', default=2e-4, type=float)
@@ -104,21 +106,21 @@ loss_network.eval()
 
 ### The following file should be placed inside the directory "./data/train/"
 
-labeled_name = 'allfilter.txt'
+labeled_name = 'allweather.txt'
 
 ### The following files should be placed inside the directory "./data/test/"
 
 # val_filename = 'val_list_rain800.txt'
-val_filename1 = 'allfilter.txt'
+val_filename1 = 'test1.txt'
 
 # --- Load training data and validation/test data --- #
-lbl_train_data_loader = DataLoader(TrainData(crop_size, train_data_dir,labeled_name), batch_size=train_batch_size, shuffle=True, num_workers=8)
+lbl_train_data_loader = DataLoader(TrainData(crop_size, train_data_dir,labeled_name), batch_size=train_batch_size, shuffle=True, num_workers=NUM_WORKERS)
 
 ## Uncomment the other validation data loader to keep an eye on performance 
 ## but note that validating while training significantly increases the train time 
 
-# val_data_loader = DataLoader(ValData(val_data_dir,val_filename), batch_size=val_batch_size, shuffle=False, num_workers=8)
-val_data_loader1 = DataLoader(ValData(val_data_dir,val_filename1), batch_size=val_batch_size, shuffle=False, num_workers=8)
+# val_data_loader = DataLoader(ValData(val_data_dir,val_filename), batch_size=val_batch_size, shuffle=False, num_workers=NUM_WORKERS)
+val_data_loader1 = DataLoader(ValData(val_data_dir,val_filename1), batch_size=val_batch_size, shuffle=False, num_workers=NUM_WORKERS)
 
 
 # --- Previous PSNR and SSIM in testing --- #

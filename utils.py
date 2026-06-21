@@ -8,8 +8,17 @@ import cv2
 
 import skimage
 import cv2
-from skimage.measure import compare_psnr, compare_ssim
 import pdb
+
+from skimage.metrics import peak_signal_noise_ratio as compare_psnr
+from skimage.metrics import structural_similarity as _structural_similarity
+
+
+def compare_ssim(img1, img2, multichannel=False, **kwargs):
+    if multichannel:
+        kwargs["channel_axis"] = -1
+    return _structural_similarity(img1, img2, data_range=255, **kwargs)
+
 def calc_psnr(im1, im2):
 
     im1 = im1[0].view(im1.shape[2],im1.shape[3],3).detach().cpu().numpy()
